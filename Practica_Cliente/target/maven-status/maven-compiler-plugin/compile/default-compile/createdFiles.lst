@@ -15,5 +15,6 @@ com\jparzival\practica_cliente\exceptions\TenistaNoEncontradoException.class
 com\jparzival\practica_cliente\jax_rs\resources\ApplicationConfig.class
 com\jparzival\practica_cliente\jax_rs\resources\TenistasWTAResource.class
 com\jparzival\practica_cliente\models\implementation\JMS\JMSResource.class
+com\jparzival\practica_cliente\exceptions\NoIntroducibleException.class
 com\jparzival\practica_cliente\models\pojos\Tenista.class
 com\jparzival\practica_cliente\ejb\JMS\ObservadorDeEventos.class

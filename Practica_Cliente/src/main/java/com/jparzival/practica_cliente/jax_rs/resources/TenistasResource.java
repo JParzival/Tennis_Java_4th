@@ -2,6 +2,7 @@ package com.jparzival.practica_cliente.jax_rs.resources;
 
 import com.jparzival.practica_cliente.cdi.qualifiers.ATP;
 import com.jparzival.practica_cliente.exceptions.ClienteException;
+import com.jparzival.practica_cliente.exceptions.NoIntroducibleException;
 import com.jparzival.practica_cliente.exceptions.TenistaNoEncontradoException;
 import com.jparzival.practica_cliente.models.Dao;
 import com.jparzival.practica_cliente.models.pojos.Tenista;
@@ -71,6 +72,11 @@ public class TenistasResource
                                @FormParam("pais") String pais) throws ClienteException
     {
         Tenista tenista = dao.insertTenista(licencia, nombre, Integer.parseInt(edad), Double.parseDouble(altura), Double.parseDouble(peso), pais);
+        
+        if(tenista == null)
+        {
+            throw new NoIntroducibleException("El tenista no se ha podido introducir (no introducible)");
+        }
         
         models.put("tenista", tenista);
         return String.format("redirect:/tenistas/ATP/%s", tenista.getLicencia());
