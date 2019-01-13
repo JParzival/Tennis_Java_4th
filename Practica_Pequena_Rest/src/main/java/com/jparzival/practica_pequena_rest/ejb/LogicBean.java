@@ -1,5 +1,8 @@
 package com.jparzival.practica_pequena_rest.ejb;
 
+import com.jparzival.practica_pequena_rest.exceptions.NoIntroducidoException;
+import com.jparzival.practica_pequena_rest.exceptions.ProblemaEnDeleteException;
+import com.jparzival.practica_pequena_rest.exceptions.ProblemaEnUpdateException;
 import com.jparzival.practica_pequena_rest.model.Dao;
 import com.jparzival.practica_pequena_rest.model.Dao_WTA;
 import com.jparzival.practica_pequena_rest.model.beans.Tenista;
@@ -35,19 +38,19 @@ public class LogicBean implements Logic
     }
 
     @Override
-    public Tenista insertTenista(String licencia, String nombreApellidos, int edad, Double altura, Double peso, String paisOrigen)
+    public Tenista insertTenista(String licencia, String nombreApellidos, int edad, Double altura, Double peso, String paisOrigen) throws NoIntroducidoException
     {
         return dao.insertTenista(licencia, nombreApellidos, edad, altura, peso, paisOrigen);
     }
 
     @Override
-    public void deleteTenista(String licencia)
+    public void deleteTenista(String licencia) throws ProblemaEnDeleteException
     {
         dao.deleteTenista(licencia);
     }
 
     @Override
-    public void updateEdadTenista(String licencia, int edad)
+    public void updateEdadTenista(String licencia, int edad) throws ProblemaEnUpdateException
     {
         dao.updateEdadTenista(licencia, edad);
     }
@@ -71,19 +74,19 @@ public class LogicBean implements Logic
     }
 
     @Override
-    public Tenista insertTenistaWTA(String licencia, String nombreApellidos, int edad, Double altura, Double peso, String paisOrigen)
+    public Tenista insertTenistaWTA(String licencia, String nombreApellidos, int edad, Double altura, Double peso, String paisOrigen) throws NoIntroducidoException
     {
         return daoWTA.insertTenistaWTA(licencia, nombreApellidos, edad, altura, peso, paisOrigen);
     }
 
     @Override
-    public void deleteTenistaWTA(String licencia)
+    public void deleteTenistaWTA(String licencia) throws ProblemaEnDeleteException
     {
         daoWTA.deleteTenistaWTA(licencia);
     }
 
     @Override
-    public void updateEdadTenistaWTA(String licencia, int edad)
+    public void updateEdadTenistaWTA(String licencia, int edad) throws ProblemaEnUpdateException
     {
         daoWTA.updateEdadTenistaWTA(licencia, edad);
     }

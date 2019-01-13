@@ -3,6 +3,7 @@ com\jparzival\practica_pequena_rest\rest\json\wrappers\TenistaJSON$Builder.class
 com\jparzival\practica_pequena_rest\cdi\producer\EJBProducer.class
 com\jparzival\practica_pequena_rest\ejb\Logic.class
 com\jparzival\practica_pequena_rest\ejb\jms\ObservadorDeEventosBean.class
+com\jparzival\practica_pequena_rest\exceptions\ProblemaEnUpdateException.class
 com\jparzival\practica_pequena_rest\ejb\jms\ObservadorDeEventos.class
 com\jparzival\practica_pequena_rest\model\Dao.class
 com\jparzival\practica_pequena_rest\rest\json\wrappers\TenistaJSON.class
@@ -16,11 +17,13 @@ com\jparzival\practica_pequena_rest\rest\json\Collection\Item.class
 com\jparzival\practica_pequena_rest\rest\json\wrappers\TenistaCJ.class
 com\jparzival\practica_pequena_rest\exceptions\TenistaNotFoundException.class
 com\jparzival\practica_pequena_rest\rest\json\wrappers\TenistaCJ$Builder.class
+com\jparzival\practica_pequena_rest\exceptions\NoIntroducidoException.class
 com\jparzival\practica_pequena_rest\rest\json\Collection\CollectionJson.class
 com\jparzival\practica_pequena_rest\rest\resources\TenistasWTAResource.class
 com\jparzival\practica_pequena_rest\ejb\jms\MessageBean.class
 com\jparzival\practica_pequena_rest\rest\resources\JMS\JMSResource.class
 com\jparzival\practica_pequena_rest\ejb\LogicBean.class
+com\jparzival\practica_pequena_rest\exceptions\ProblemaEnDeleteException.class
 com\jparzival\practica_pequena_rest\model\implementation\OracleDaoWTA.class
 com\jparzival\practica_pequena_rest\cdi\qualifiers\CDIProduced.class
 com\jparzival\practica_pequena_rest\model\implementation\OracleDao.class

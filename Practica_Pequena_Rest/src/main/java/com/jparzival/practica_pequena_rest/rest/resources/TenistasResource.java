@@ -26,6 +26,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import com.jparzival.practica_pequena_rest.cdi.qualifiers.CDIProduced;
+import com.jparzival.practica_pequena_rest.exceptions.ProblemaEnDeleteException;
+import com.jparzival.practica_pequena_rest.exceptions.ProblemaEnUpdateException;
 
 /**
  *
@@ -141,7 +143,7 @@ public class TenistasResource
     @POST
     @Path("delete")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response deleteTenista(@FormParam("licencia") String licencia)
+    public Response deleteTenista(@FormParam("licencia") String licencia) throws ProblemaEnDeleteException
     {
         logic.deleteTenista(licencia);
         
@@ -158,7 +160,7 @@ public class TenistasResource
     @Path("update")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response updateEdadTenista(@FormParam("licencia") String licencia,
-                                      @FormParam("edad") String edad)
+                                      @FormParam("edad") String edad) throws ProblemaEnUpdateException
     {
         logic.updateEdadTenista(licencia, Integer.parseInt(edad));
         

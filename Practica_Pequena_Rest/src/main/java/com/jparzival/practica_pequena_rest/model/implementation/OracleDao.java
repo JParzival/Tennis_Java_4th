@@ -1,6 +1,9 @@
 package com.jparzival.practica_pequena_rest.model.implementation;
 
 import com.jparzival.practica_pequena_rest.cdi.qualifiers.ATP;
+import com.jparzival.practica_pequena_rest.exceptions.NoIntroducidoException;
+import com.jparzival.practica_pequena_rest.exceptions.ProblemaEnDeleteException;
+import com.jparzival.practica_pequena_rest.exceptions.ProblemaEnUpdateException;
 import com.jparzival.practica_pequena_rest.exceptions.TenistaNotFoundException;
 import com.jparzival.practica_pequena_rest.exceptions.TenistasNotFoundException;
 import com.jparzival.practica_pequena_rest.model.Dao;
@@ -121,7 +124,7 @@ public class OracleDao implements Dao
     }
     
     @Override
-    public Tenista insertTenista(String licencia, String nombreApellidos, int edad, Double altura, Double peso, String paisOrigen)  //en caso de querer insertar un tenista...
+    public Tenista insertTenista(String licencia, String nombreApellidos, int edad, Double altura, Double peso, String paisOrigen) throws NoIntroducidoException  //en caso de querer insertar un tenista...
     {
         final String SQL = "INSERT INTO TENISTAS_ATP (LICENCIA, NOMBREAPELLIDOS, EDAD, ALTURA, PESO, PAISORIGEN)"
                 +          " VALUES (?, ?, ?, ?, ?, ?)";
@@ -144,12 +147,12 @@ public class OracleDao implements Dao
         } 
         catch (SQLException ex)
         {
-            return null;
+            throw new NoIntroducidoException("El tenista no ha podido ser introducido");
         }
     }
 
     @Override
-    public void deleteTenista(String licencia)
+    public void deleteTenista(String licencia) throws ProblemaEnDeleteException
     {
         final String SQL_DELETE = "DELETE FROM TENISTAS_ATP WHERE LICENCIA = ?";
         
@@ -163,12 +166,12 @@ public class OracleDao implements Dao
         } 
         catch (SQLException ex)
         {
-            
+            throw new ProblemaEnDeleteException("Ha habido problemas en el delete");
         }
     }
 
     @Override
-    public void updateEdadTenista(String licencia, int edad)
+    public void updateEdadTenista(String licencia, int edad) throws ProblemaEnUpdateException
     {
         final String SQL_Update = "UPDATE TENISTAS_ATP SET EDAD = ? WHERE LICENCIA = ?";
         
@@ -182,7 +185,7 @@ public class OracleDao implements Dao
         } 
         catch (SQLException ex)
         {
-            
+            throw new ProblemaEnUpdateException("Ha habido un problema haciendo update");
         }
     }
     

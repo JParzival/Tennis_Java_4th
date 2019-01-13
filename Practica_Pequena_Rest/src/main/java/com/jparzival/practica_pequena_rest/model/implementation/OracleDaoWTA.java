@@ -1,6 +1,9 @@
 package com.jparzival.practica_pequena_rest.model.implementation;
 
 import com.jparzival.practica_pequena_rest.cdi.qualifiers.WTA;
+import com.jparzival.practica_pequena_rest.exceptions.NoIntroducidoException;
+import com.jparzival.practica_pequena_rest.exceptions.ProblemaEnDeleteException;
+import com.jparzival.practica_pequena_rest.exceptions.ProblemaEnUpdateException;
 import com.jparzival.practica_pequena_rest.exceptions.TenistaNotFoundException;
 import com.jparzival.practica_pequena_rest.exceptions.TenistasNotFoundException;
 import com.jparzival.practica_pequena_rest.model.Dao_WTA;
@@ -121,7 +124,7 @@ public class OracleDaoWTA implements Dao_WTA
     }
     
     @Override
-    public Tenista insertTenistaWTA(String licencia, String nombreApellidos, int edad, Double altura, Double peso, String paisOrigen)  //en caso de querer insertar un tenista...
+    public Tenista insertTenistaWTA(String licencia, String nombreApellidos, int edad, Double altura, Double peso, String paisOrigen) throws NoIntroducidoException //en caso de querer insertar un tenista...
     {
         final String SQL = "INSERT INTO TENISTAS_WTA (LICENCIA, NOMBREAPELLIDOS, EDAD, ALTURA, PESO, PAISORIGEN)"
                 +          " VALUES (?, ?, ?, ?, ?, ?)";
@@ -144,12 +147,12 @@ public class OracleDaoWTA implements Dao_WTA
         } 
         catch (SQLException ex)
         {
-            return null;
+            throw new NoIntroducidoException("La tenista no ha podido ser introducida");
         }
     }
     
     @Override
-    public void deleteTenistaWTA(String licencia)
+    public void deleteTenistaWTA(String licencia) throws ProblemaEnDeleteException
     {
         final String SQL_DELETE = "DELETE FROM TENISTAS_WTA WHERE LICENCIA = ?";
         
@@ -162,12 +165,12 @@ public class OracleDaoWTA implements Dao_WTA
         } 
         catch (SQLException ex)
         {
-           
+           throw new ProblemaEnDeleteException("La tenista ha tenido un problema en el delete");
         }
     }
     
     @Override
-    public void updateEdadTenistaWTA(String licencia, int edad)
+    public void updateEdadTenistaWTA(String licencia, int edad) throws ProblemaEnUpdateException
     {
         final String SQL = "UPDATE TENISTAS_WTA SET EDAD = ? WHERE LICENCIA = ?";
         
@@ -181,7 +184,7 @@ public class OracleDaoWTA implements Dao_WTA
         } 
         catch (SQLException ex)
         {
-            
+            throw new ProblemaEnUpdateException("Ha habido un problema haciendo update");
         }
     }
     
